@@ -1,0 +1,5 @@
+@import "../../sass/mixins.scss";
+
+.search-wrapper{
+    @include dropdown-wrapper;
+}

@@ -1,0 +1,60 @@
+@import "../sass/mixins.scss";
+
+.wrapper {
+  position: relative;
+
+  .caret {
+    position: absolute;
+    right: 6px;
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border: 5px solid transparent;
+  }
+
+  .cascade-wrapper {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+
+    .caret-down {
+      border-top-color: black;
+      top: 11px;
+    }
+
+    .close {
+      position: absolute;
+      right: 23px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #000;
+      top: 4px;
+      width: 15px;
+    }
+
+    .input-wrapper {
+      & > input {
+        border: none;
+        cursor: pointer;
+        &:focus {
+          outline: none;
+        }
+      }
+      .selected-option {
+        position: absolute;
+      }
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .dropdown-wrapper {
+    @include dropdown-wrapper;
+  }
+}

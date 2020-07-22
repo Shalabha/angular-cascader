@@ -1,0 +1,21 @@
+{
+  "name": "angular-cascader",
+  "version": "0.0.1",
+  "description": "A simple cascader that can be used to select from a set of associated data set",
+  "author": "Shalabha Mary Sunny",
+  "repositor": {
+    "type": "git",
+    "url": "https://github.com/Shalabha/angular-cascader"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "javascript",
+    "cascader"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^9.1.0-next.4",
+    "@angular/core": "^9.1.0-next.4",
+    "tslib": "^1.10.0"
+  }
+}

@@ -1,0 +1,33 @@
+<section class="wrapper">
+  <button (focusout)="onBlur($event)" class="cascade-wrapper" placeholder="Select" (click)="displayDropdown()">
+    <span class="input-wrapper">
+      <span class="selected-option">{{selectedOption}}</span>
+      <input (keyup)="isInputEntered = true" type="text" [(ngModel)]="filterInput"
+        [placeholder]="!selectedOption ? 'Select' : ''" [readonly]="enableSearchFilter()" />
+    </span>
+    <span (click)="reset($event)" *ngIf="selectedOption || isInputEntered" class="close">x</span>
+    <span class="caret caret-down"></span>
+  </button>
+  <div class="dropdown-wrapper" *ngIf="showDropDown && !filterInput">
+    <ul class="main-nav">
+      <ng-container *ngTemplateOutlet="recursiveDropdownTmpl; context:{ list: dropdownOptions }"></ng-container>
+    </ul>
+  <!-- Recurssive Template to display the list and children elements-->
+    <ng-template #recursiveDropdownTmpl let-list="list">
+      <li tabIndex="1" [ngClass]="{'active' : isItemSelected(option?.id),'disable': option?.disable}"
+        *ngFor="let option of list" id="{{option?.id}}" (click)="displayCascader(option, $event)">
+        {{option?.name }}
+        <span [ngClass]="isItemSelected(option?.id) ? 'active-caret-right' : 'caret-right'"
+          *ngIf="option?.children?.length" class="caret"></span>
+        <ul class="submenu" *ngIf="option?.children?.length > 0 && option?.children?.showSubmenu">
+          <ng-container *ngTemplateOutlet="recursiveDropdownTmpl; context:{ list: option.children }"></ng-container>
+        </ul>
+      </li>
+    </ng-template>
+
+  </div>
+  <!-- Template if filtering is enabled and user serach for an item -->
+  <ng-container *ngIf="isInputEntered && filterInput">
+    <ngx-list-filter (selectOption) = "selectFilteredData($event)" [filterData]="filterData" [searchInput] = "filterInput"></ngx-list-filter>
+  </ng-container>
+</section>
